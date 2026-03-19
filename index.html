@@ -1058,17 +1058,19 @@ function updateNotifBanner(perm){
 // ============ END NOTIFICATIONS ============
 
 // ---- BOOT ----
-loadAll();
+try { loadAll(); } catch(e) { console.error('loadAll error:', e); }
 // 通知許可済みなら SW 起動 & スケジュール
-if(Notification.permission === 'granted'){
-  initSW().then(() => { setTimeout(scheduleNotifications, 500); });
-  document.getElementById('notif-banner').style.display='none';
-} else if(Notification.permission === 'denied'){
-  updateNotifBanner('denied');
-}
-renderModeBar();
-renderTodos();
-renderToday();
+try {
+  if(Notification.permission === 'granted'){
+    initSW().then(() => { setTimeout(scheduleNotifications, 500); });
+    document.getElementById('notif-banner').style.display='none';
+  } else if(Notification.permission === 'denied'){
+    updateNotifBanner('denied');
+  }
+} catch(e) { console.error('notification error:', e); }
+try { renderModeBar(); } catch(e) { console.error('renderModeBar error:', e); }
+try { renderTodos(); } catch(e) { console.error('renderTodos error:', e); }
+try { renderToday(); } catch(e) { console.error('renderToday error:', e); }
 
 </script>
 
