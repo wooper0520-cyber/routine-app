@@ -810,7 +810,6 @@ function renderTodos(){
   const done = todos.filter(t=>t.done).length;
   document.getElementById('todo-count').textContent = done+' / '+todos.length;
   list.innerHTML = '';
-  saveAll();
   todos.forEach(t => {
     const card = document.createElement('div');
     card.className = 'todo-card'+(t.done?' done-todo':'');
@@ -820,10 +819,10 @@ function renderTodos(){
       <button class="todo-del" data-tid="${t.id}">✕</button>
     `;
     card.querySelector('.todo-check').addEventListener('click', e => {
-      t.done = !t.done; renderTodos();
+      t.done = !t.done; saveAll(); renderTodos();
     });
     card.querySelector('.todo-del').addEventListener('click', e => {
-      todos = todos.filter(x=>x.id!==t.id); renderTodos();
+      todos = todos.filter(x=>x.id!==t.id); saveAll(); renderTodos();
     });
     list.appendChild(card);
   });
@@ -843,6 +842,7 @@ function saveTodo(){
   todos.push({id:nextTodoId++, text, done:false});
   inp.value = '';
   document.getElementById('todo-input-wrap').style.display = 'none';
+  saveAll();
   renderTodos();
 }
 document.getElementById('todo-inp-save').addEventListener('click', saveTodo);
