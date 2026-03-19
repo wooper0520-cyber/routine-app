@@ -524,18 +524,8 @@ function loadAll(){
 }
 // ============ END PERSISTENCE ============
 
-let routines=[
-  {id:1,name:'水を2杯飲む',emoji:'💧',color:COLORS[0],period:'morning',time:'07:00',duration:5,done:true,notif:true,ntime:'06:55',repeat:{type:'everyday'}},
-  {id:2,name:'ストレッチ',emoji:'🤸',color:COLORS[1],period:'morning',time:'07:30',duration:15,done:true,notif:false,repeat:{type:'everyday'}},
-  {id:3,name:'読書',emoji:'📚',color:COLORS[4],period:'morning',time:'08:00',duration:20,done:false,notif:false,repeat:{type:'weekdays',days:[1,2,3,4,5]}},
-  {id:4,name:'筋トレ',emoji:'💪',color:COLORS[2],period:'afternoon',time:'12:00',duration:30,done:false,notif:false,repeat:{type:'weekly_n',n:3,doneThisWeek:1}},
-  {id:5,name:'ランニング',emoji:'🏃',color:COLORS[7],period:'morning',time:'06:30',duration:40,done:false,notif:false,repeat:{type:'interval',n:2,startDate:new Date(today.getTime()-86400000).toISOString().split('T')[0]}},
-  {id:6,name:'瞑想',emoji:'🧘',color:COLORS[5],period:'evening',time:'21:00',duration:10,done:false,notif:true,ntime:'21:00',repeat:{type:'everyday'}},
-  {id:7,name:'日記を書く',emoji:'✍️',color:COLORS[4],period:'evening',time:'22:00',duration:10,done:false,notif:false,repeat:{type:'everyday'}},
-  {id:8,name:'家計簿をつける',emoji:'🗒️',color:COLORS[3],period:'evening',time:'22:30',duration:10,done:false,notif:false,repeat:{type:'monthly',mtype:'date',date:1}},
-  {id:9,name:'体重を計る',emoji:'⚖️',color:COLORS[6],period:'morning',time:'07:00',duration:2,done:false,notif:false,repeat:{type:'monthly',mtype:'weekday',nth:1,wd:1}},
-];
-let nextId=10,selEmoji=EMOJIS[0],selColor=COLORS[0],notifOn=false;
+let routines=[];
+let nextId=1,selEmoji=EMOJIS[0],selColor=COLORS[0],notifOn=false;
 let selRT='everyday', selDays=[1,3,5], selWN=3, selInterval=2;
 let calY=today.getFullYear(), calM=today.getMonth();
 let inactiveOpen=false;
@@ -812,11 +802,8 @@ document.getElementById('modal-save').addEventListener('click',()=>{
 
 
 // ======= TODO =======
-let todos = [
-  {id:1, text:'スーパーで買い物', done:false},
-  {id:2, text:'メール返信', done:true},
-];
-let nextTodoId = 3;
+let todos = [];
+let nextTodoId = 1;
 
 function renderTodos(){
   const list = document.getElementById('todo-list');
